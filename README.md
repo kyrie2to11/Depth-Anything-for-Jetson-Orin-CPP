@@ -32,7 +32,7 @@ cd ./engine
 trtexec --onnx=depth_anything_vits14_364.onnx --saveEngine=depth_anything_vits14_364.engine --fp16 
 ```
 
-## Build using CMake
+## Build executable using CMake
 
 ``` bash
 # switch to the project directory
