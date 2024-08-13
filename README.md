@@ -12,15 +12,16 @@
 - CUDA 11.4.315
 - cuDNN 8.6.0.166
 - TensorRT 8.5.2.2
-- librealsense 2.55.1.0 # installation guide: https://github.com/IntelRealSense/librealsense/blob/master/doc/installation_jetson.md
-- command to check libreasense version: `sudo dpkg -l | grep librealsense` or  `realsense-viewer --version`
+- librealsense 2.55.1.0
+  - installation guide: https://github.com/IntelRealSense/librealsense/blob/master/doc/installation_jetson.md
+  - command to check libreasense version: `sudo dpkg -l | grep librealsense` or  `realsense-viewer --version`
 
 # Building the Project
 
 ## Cloning the Repository
 
 ``` bash
-git clone https://github.com/jetsonhacks/Depth-Anything-for-Jetson-Orin-CPP.git
+git clone https://github.com/kyrie2to11/Depth-Anything-for-Jetson-Orin-CPP.git
 ```
 
 ## Build the Tensor RT engine 
