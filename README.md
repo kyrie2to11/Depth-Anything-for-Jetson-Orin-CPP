@@ -9,6 +9,7 @@
 
 - JetPack 5.1.1
 - OpenCV 4.10.0-dev with CUDA: YES
+  - installation guide: https://qengineering.eu/install-opencv-on-jetson-nano.html
 - CUDA 11.4.315
 - cuDNN 8.6.0.166
 - TensorRT 8.5.2.2
