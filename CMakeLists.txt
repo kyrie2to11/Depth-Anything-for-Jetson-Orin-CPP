@@ -51,7 +51,7 @@ list(APPEND ALL_LIBS
         ${realsense2_LIBRARY}
         )
 
-include_directories(${INCLUDE_DIRS}) # 添加头文件搜索路径，用于编译阶段
+include_directories(${INCLUDE_DIRS}) # Add include directories for compilation stage
 
 add_executable(${PROJECT_NAME}
         src/main.cpp
@@ -61,5 +61,8 @@ add_executable(${PROJECT_NAME}
         include/utils.hpp
         )
 
-target_link_directories(${PROJECT_NAME} PUBLIC ${ALL_LIBS}) # 添加链接库搜索路径，用于链接阶段
-target_link_libraries(${PROJECT_NAME} PRIVATE nvinfer nvinfer_plugin cudart ${OpenCV_LIBS} ${realsense2_LIBRARY})
+# Place the executable in the parent directory of the build folder
+set(EXECUTABLE_OUTPUT_PATH "../")
+
+target_link_directories(${PROJECT_NAME} PUBLIC ${ALL_LIBS}) # Specify directories containing libraries for linking
+target_link_libraries(${PROJECT_NAME} PRIVATE nvinfer nvinfer_plugin cudart ${OpenCV_LIBS} ${realsense2_LIBRARY}) # Add libraries for linking stage

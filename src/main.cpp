@@ -28,7 +28,7 @@ int main(int argc, char** argv)
 
     // 要求输入4个参数
     if (argc < 3) {
-        fprintf(stderr,"Usage: ./build/depth_anything_cpp [model_trt.engine] [--stream or --image or --video] [camera_id or image_path or video path] \n");
+        fprintf(stderr,"Usage: ./depth_anything_cpp [model_trt_engine_path] [--stream or --image or --video] [camera_id or image_path or video path] \n");
         return -1;
     }
 
@@ -76,9 +76,12 @@ int main(int argc, char** argv)
     auto devices = ctx.query_devices();
     rs2::pipeline pipe;
     rs2::config cfg;
-    int device_num = int(*argv[3] - '0');
-    cfg.enable_device(devices[device_num].get_info(RS2_CAMERA_INFO_SERIAL_NUMBER));
-    cfg.enable_stream(RS2_STREAM_COLOR, 640, 480, RS2_FORMAT_BGR8, 30);
+    if (use_stream) {
+        int device_num = int(*argv[3] - '0');
+        cfg.enable_device(devices[device_num].get_info(RS2_CAMERA_INFO_SERIAL_NUMBER));
+        cfg.enable_stream(RS2_STREAM_COLOR, 640, 480, RS2_FORMAT_BGR8, 30);
+    }
+
 
 
     if (use_video) {
@@ -142,13 +145,16 @@ int main(int argc, char** argv)
         // 可视化输出 color_map 和 image 水平拼接结果
         cv::hconcat(image, color_map, combined_image);
         cv::imshow("Depth Anything on Jetson Orin NX - 16GB RAM", combined_image);
+        // 按键 q 或 Esc 退出
         char key = cv::waitKey(1);
         if(key == 'q' || key == 27) break;
     }
 
     // 释放资源
     cap.release();
-    pipe.stop();
+    if (use_stream) {
+        pipe.stop();
+    }
     cv::destroyAllWindows();
     delete depth_anything;
 
