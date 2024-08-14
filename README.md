@@ -71,4 +71,4 @@ cmake --build build
 ![](./test_video_picture/davis_dolphins_inference.jpg)
 
 3. run with live realsense camera input:
-![](./test_video_picture/live_stream_inference.jpg)
+![](./test_video_picture/live_stream_inference.mp4)
